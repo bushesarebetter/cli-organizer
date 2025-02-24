@@ -16,3 +16,6 @@ organize - command name
 
 ## Modifying the sorting
 In ```settings.txt```, you can simply change any pair that you want, add new pairs, or even remove them. For example, you can add ```Songs: mp3``` if you want to sort .mp3 files as well. Keep in mind that you do NOT put the ```.``` before the extension, the script is built to not have these. Don't put any commas or anything like that, just spaces between each arg (```Songs: mp3 song mp2```).
+
+## Unsupported formats
+Due to UTF restrictions and type conversions between str and char (for renaming files), certain files may not sort properly (This is normally because of weird characters, however sometimes the script doesn't have access to move the folder). This won't break the script, and shouldn't cause too many issues with just moving the rest of the files by hand, unless all files have weird names. Example of a weird name: "Copy of AP Calculus BC_ Day 5 ΓÇô 8 Review"
