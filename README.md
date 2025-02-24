@@ -2,7 +2,7 @@
 Lightweight command-line tool for organizing files and folders, written in C++
 
 ## Running
-To compile for your machine, downlaod the file and run ```g++ <filepath> -o organize``` (or clang, depending on the compiler you're using). Make sure to keep ```settings.txt``` in the same directory as the executable. 
+To compile for your machine, downlaod the file and run ```g++ <filepath> -o organize``` (or clang, depending on the compiler you're using). All the included headers should be cross-platform, however it does use <algorithm>, which requries a c++17 library, so make sure to compile using one that supports at least 17. Make sure to keep ```settings.txt``` in the same directory as the executable. 
 
 After that, you can run the command as easily as this:
 
