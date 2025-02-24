@@ -1,0 +1,7 @@
+Documents: pdf txt
+Word Docs: docx
+Images: jpg png jpeg svg
+Videos: mp4 mkv gif
+Executables: exe app
+Zipped Folders: zip
+Others:
