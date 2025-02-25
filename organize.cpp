@@ -46,17 +46,31 @@ RuleMap loadRules(std::string& filename){
 int main(int argc, char* argv[]) {
 
     bool sort_folders = false;
+    bool forced = false;
     for (int i = 0; i < argc; ++i){
         if (strcmp(argv[i], "--sf") == 0) {
             sort_folders = true;
         }
+        if (strcmp(argv[i], "--force") == 0){
+            forced = true;
+        }
     }
-    if(argc < 2 + sort_folders){
-        std::cout << "Usage: organize <foldername> --sf (optional)" << std::endl;
+    if(argc < 2 + sort_folders + forced){
+        std::cout << "Usage: organize <foldername> --sf (optional) --force (optional)" << std::endl;
         return 1;
     }
 
     std::string path = argv[1];
+    if(!forced){
+        std::string input;
+        std::cout << "You want to sort this folder: " << path << " , correct? (Y/N)" << std::endl;
+        std::cin >> input;
+        if(!(input =="Y")){
+            std::cout << "Understood, quitting" <<std::endl;
+            return 1;
+        }
+    }
+    std::cout << "Beginning sorting" <<std::endl;
     std::string look = "settings.txt";
     RuleMap rules = loadRules(look);
 
@@ -71,13 +85,15 @@ int main(int argc, char* argv[]) {
             std::string new_filename = path + "/" + assign_key(ext, rules) + "/" + fp;
             fs::create_directories(fs::path(new_filename).parent_path());
             if(!(std::rename(old_filename.c_str(), new_filename.c_str()) == 0)) {
-                std::perror("ERROR");
+                std::cout << "Unable to sort file: " << fp << std::endl;
             }
         } else if (!fs::is_directory(entry)) {
             std::string old_filename = path + "/" + fp;
             std::string new_filename = path + "/" + "Others" + "/" + fp;
             fs::create_directories(fs::path(new_filename).parent_path());
-            std::rename(old_filename.c_str(), new_filename.c_str());
+            if(!(std::rename(old_filename.c_str(), new_filename.c_str()) == 0)) {
+                std::cout << "Unable to sort file: " << fp << std::endl;
+            }
         } else if (sort_folders) {
             // at this point we assume the entry is a directory
             // we need to check if the directory exists in settings.txt, so we need to check all KEYS to see if they match
@@ -95,11 +111,13 @@ int main(int argc, char* argv[]) {
                 std::string new_filename = path + "/" + "Folders" + "/" + fp;
                 fs::create_directories(fs::path(new_filename).parent_path());
                 if(!(std::rename(old_filename.c_str(), new_filename.c_str()) == 0)) {
-                    std::perror("ERROR");
+                    std::cout<< "Unable to sort folder: " << fp << std::endl;
                 }
             }
         }
     }
+
+    std::cout << "Sorting finished!" <<std::endl;
 
 
 
