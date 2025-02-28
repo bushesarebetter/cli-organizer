@@ -37,3 +37,19 @@ Unable to sort file: Kami Export - Copy of AP Calculus BC_ Day 5 ΓÇô 8 Review
 Unable to sort folder: Starter Packet
 
 That way, you can easily go in your file explorer app and move them by hand, if you desire. MAKE SURE TO DO THIS IF YOU MIGHT DISORGANIZE LATER OTHERWISE IT WILL UNPACK ALL FOLDERS WHICH COULD BE BAD.
+
+## disorganize.cpp
+Follow the same steps for compiling ```organize.cpp```, just change the -o to disorganize rather than organize. Then, you can run the command ```disorganize <folderpath> --omit/ignore [args](optional) --force (optional)```. 
+
+Let's break it down step by step
+
+```disorganize``` - base command
+
+```<folderpath>``` - path to the folder you want to unsort, like C:/Users/bush/Downloads
+
+```--omit/ignore [args]``` - any folders you don't want to sort, typed out like this: folder1 folder2 folder3 "Folder Three" - notice how there is a space between each argument and for multi-word folders you want to put it in quotation marks. Useful if you don't want to unpack certain folders.
+
+```--force``` - Whether you want confirmation about what you're doing. Unless you are copying and pasting the folder path, it is highly suggested to keep this off. If you feel bold, however, take the program by the reins and reject confirmation!
+
+The ```disorganize``` script will then delete the shell folders at the end. Don't worry, all the files should be moved out by then.
+
