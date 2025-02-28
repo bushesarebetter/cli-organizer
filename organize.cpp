@@ -7,6 +7,7 @@
 #include <string>
 #include <algorithm>
 #include <cstring>
+#include <cctype>
 
 namespace fs = std::filesystem;
 using RuleMap = std::unordered_map<std::string, std::vector<std::string>>;
@@ -65,7 +66,7 @@ int main(int argc, char* argv[]) {
         std::string input;
         std::cout << "You want to sort this folder: " << path << " , correct? (Y/N)" << std::endl;
         std::cin >> input;
-        if(!(input =="Y")){
+        if(!(input =="Y" || input=="y")){
             std::cout << "Understood, quitting" <<std::endl;
             return 1;
         }
